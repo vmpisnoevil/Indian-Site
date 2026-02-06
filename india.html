@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India - Land of Diversity</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            background: #ffffff;
+        }
+
+        header {
+            background: linear-gradient(135deg, #FF9933 0%, #FFFFFF 50%, #138808 100%);
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255,153,51,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -50px;
+            left: -50px;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(19,136,8,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -30px;
+            right: -30px;
+        }
+
+        .flag-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 15px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .flag {
+            width: 180px;
+            height: 120px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-radius: 2px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #138808;
+            font-weight: 700;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(255,153,51,0.2);
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2rem;
+            margin-top: 10px;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+            flex-wrap: wrap;
+        }
+
+        nav button {
+            background: none;
+            border: 2px solid #138808;
+            color: #138808;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        nav button:hover {
+            background: #138808;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(19,136,8,0.3);
+        }
+
+        nav button.active {
+            background: #FF9933;
+            border-color: #FF9933;
+            color: white;
+        }
+
+        .section {
+            display: none;
+            padding: 80px 20px;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            color: #FF9933;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .landmarks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .landmark-card {
+            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid #FF9933;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .landmark-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .landmark-card h3 {
+            color: #138808;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .landmark-card p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .cultural-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        .cultural-item {
+            background: linear-gradient(135deg, #fff9e6 0%, #ffe6cc 100%);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(255,153,51,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .cultural-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(255,153,51,0.3);
+        }
+
+        .cultural-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cultural-item h3 {
+            color: #FF9933;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .cultural-item p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .states-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .state-card {
+            background: linear-gradient(135deg, #e8f5e9 0%, #ffffff 100%);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #138808;
+            box-shadow: 0 3px 12px rgba(19,136,8,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .state-card:hover {
+            box-shadow: 0 8px 20px rgba(19,136,8,0.2);
+            transform: translateX(5px);
+        }
+
+        .state-card h3 {
+            color: #138808;
+            margin-bottom: 10px;
+        }
+
+        .state-card p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .image-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .taj-mahal {
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            background: linear-gradient(180deg, #87ceeb 0%, #e0f6ff 100%);
+            border-radius: 10px;
+            position: relative;
+            margin: 0 auto;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .taj-building {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 150px;
+        }
+
+        .taj-dome {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: #f0f0f0;
+            border-radius: 50% 50% 0 0;
+            left: 50%;
+            bottom: 150px;
+            transform: translateX(-50%);
+            box-shadow: inset -5px -5px 10px rgba(0,0,0,0.1);
+        }
+
+        .taj-dome::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 20px;
+            background: #d4a574;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .taj-base {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 50px;
+            background: #d4a574;
+            transform: perspective(400px) rotateX(5deg);
+        }
+
+        .taj-minaret {
+            position: absolute;
+            width: 20px;
+            height: 120px;
+            background: #f0f0f0;
+            bottom: 50px;
+        }
+
+        .taj-minaret:nth-child(4) {
+            left: 20px;
+        }
+
+        .taj-minaret:nth-child(5) {
+            right: 20px;
+        }
+
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .fact-box {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-top: 4px solid #FF9933;
+        }
+
+        .fact-number {
+            font-size: 2.5rem;
+            color: #FF9933;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .fact-label {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .footer-text {
+            color: #FF9933;
+            font-weight: 600;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 50px;
+            border: 2px solid #138808;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: scroll-bounce 2s infinite;
+            z-index: 10;
+        }
+
+        .scroll-indicator::before {
+            content: '';
+            width: 4px;
+            height: 10px;
+            background: #138808;
+            border-radius: 2px;
+            animation: scroll-move 2s infinite;
+        }
+
+        @keyframes scroll-bounce {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes scroll-move {
+            0% {
+                transform: translateY(-10px);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(10px);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 60px 15px;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            nav {
+                gap: 15px;
+            }
+
+            nav button {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+
+            .landmark-card {
+                padding: 20px;
+            }
+
+            .cultural-item {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="flag-container">
+            <img src="india-flag.webp" alt="Indian Flag" class="flag">
+        </div>
+        <h1>INDIA</h1>
+        <p class="subtitle">Land of Diversity, Culture & Wonder</p>
+        <nav>
+            <button class="nav-btn active" data-section="landmarks">Landmarks</button>
+            <button class="nav-btn" data-section="culture">Culture</button>
+            <button class="nav-btn" data-section="states">Diversity</button>
+            <button class="nav-btn" data-section="facts">About India</button>
+        </nav>
+        <div class="scroll-indicator"></div>
+    </header>
+
+    <section id="landmarks" class="section active">
+        <div class="container">
+            <h2>Iconic Landmarks</h2>
+            <div class="landmarks-grid">
+                <div class="landmark-card">
+                    <h3>Taj Mahal</h3>
+                    <p>A symbol of eternal love, the Taj Mahal in Agra is one of the most recognizable structures in the world. Built by Emperor Shah Jahan, it stands as a masterpiece of Mughal architecture.</p>
+                </div>
+                <div class="landmark-card">
+                    <h3>India Gate</h3>
+                    <p>Standing tall in New Delhi, the India Gate is a war memorial dedicated to Indian soldiers. It has become an iconic symbol of India and a popular gathering place.</p>
+                </div>
+                <div class="landmark-card">
+                    <h3>Hawa Mahal</h3>
+                    <p>The Palace of Winds in Jaipur is an architectural marvel with 953 small windows. It allows cool breeze to flow through, keeping the palace cool in the heat.</p>
+                </div>
+                <div class="landmark-card">
+                    <h3>Varanasi Ghats</h3>
+                    <p>The sacred Ganges River banks in Varanasi host the oldest continuously inhabited city in the world. Pilgrims come here for spiritual enlightenment and rituals.</p>
+                </div>
+                <div class="landmark-card">
+                    <h3>Qutub Minar</h3>
+                    <p>This 73-meter tall minaret in Delhi is the tallest brick structure in the world. Built in the 12th century, it showcases Indo-Islamic architecture at its finest.</p>
+                </div>
+                <div class="landmark-card">
+                    <h3>Jaipur City</h3>
+                    <p>Known as the Pink City, Jaipur was the first planned city in India. Its geometric grid layout and terracotta-colored buildings make it unique and enchanting.</p>
+                </div>
+            </div>
+            <div class="image-section">
+                <div class="taj-mahal">
+                    <div class="taj-dome"></div>
+                    <div class="taj-minaret"></div>
+                    <div class="taj-minaret"></div>
+                    <div class="taj-base"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="culture" class="section">
+        <div class="container">
+            <h2>Rich Cultural Heritage</h2>
+            <div class="cultural-items">
+                <div class="cultural-item">
+                    <div class="cultural-icon">YOGA</div>
+                    <h3>Ancient Wisdom</h3>
+                    <p>Yoga originated in India thousands of years ago. It combines physical postures, breathing, and meditation for holistic wellness.</p>
+                </div>
+                <div class="cultural-item">
+                    <div class="cultural-icon">DANCE</div>
+                    <h3>Classical Dance</h3>
+                    <p>Forms like Bharatanatyam, Kathak, and Kathakali are centuries old art forms that tell stories through intricate movements and expressions.</p>
+                </div>
+                <div class="cultural-item">
+                    <div class="cultural-icon">FESTIVALS</div>
+                    <h3>Celebrations</h3>
+                    <p>Diwali, Holi, Navratri, and Eid are celebrated with great fervor. India's diversity shines through its colorful and joyous festivals.</p>
+                </div>
+                <div class="cultural-item">
+                    <div class="cultural-icon">CUISINE</div>
+                    <h3>Diverse Flavors</h3>
+                    <p>From North Indian curries to South Indian dosas, Indian cuisine is known for its rich spices, aromatic flavors, and regional specialties.</p>
+                </div>
+                <div class="cultural-item">
+                    <div class="cultural-icon">MUSIC</div>
+                    <h3>Melodious Tradition</h3>
+                    <p>Classical music with ragas and taals creates a meditative experience. Bollywood music brings modern entertainment to millions worldwide.</p>
+                </div>
+                <div class="cultural-item">
+                    <div class="cultural-icon">TEXTILES</div>
+                    <h3>Craftsmanship</h3>
+                    <p>Indian textiles like silk, cotton, and handwoven fabrics are renowned globally. Intricate designs and patterns reflect India's artistic heritage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="states" class="section">
+        <div class="container">
+            <h2>India's Diversity</h2>
+            <div class="states-list">
+                <div class="state-card">
+                    <h3>Himalayan North</h3>
+                    <p>Kashmir and Himachal Pradesh showcase snow-capped mountains, pristine valleys, and adventure tourism. The Himalayas are a source of spiritual and physical inspiration.</p>
+                </div>
+                <div class="state-card">
+                    <h3>Desert West</h3>
+                    <p>Rajasthan is the land of forts, palaces, and desert landscapes. Golden dunes and vibrant culture make it an unforgettable destination.</p>
+                </div>
+                <div class="state-card">
+                    <h3>Coastal East</h3>
+                    <p>West Bengal and Odisha feature Darjeeling tea gardens, historic temples, and beaches. The culture here blends modern and ancient traditions.</p>
+                </div>
+                <div class="state-card">
+                    <h3>Tropical South</h3>
+                    <p>Kerala, Tamil Nadu, and Karnataka are known for spice plantations, ancient temples, beaches, and tech hubs. The South preserves classical traditions deeply.</p>
+                </div>
+                <div class="state-card">
+                    <h3>Sacred Central</h3>
+                    <p>Madhya Pradesh and Chhattisgarh contain ancient temples, tribal culture, and dense forests. Khajuraho temples are architectural wonders.</p>
+                </div>
+                <div class="state-card">
+                    <h3>Metropolitan North-East</h3>
+                    <p>Delhi, Punjab, and Uttar Pradesh are home to India's capital and religious centers. Amritsar's Golden Temple and Varanasi draw pilgrims from worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="facts" class="section">
+        <div class="container">
+            <h2>About India</h2>
+            <div class="facts-grid">
+                <div class="fact-box">
+                    <div class="fact-number">1.4B+</div>
+                    <div class="fact-label">People and Counting</div>
+                </div>
+                <div class="fact-box">
+                    <div class="fact-number">28</div>
+                    <div class="fact-label">States and 8 Union Territories</div>
+                </div>
+                <div class="fact-box">
+                    <div class="fact-number">22</div>
+                    <div class="fact-label">Official Languages</div>
+                </div>
+                <div class="fact-box">
+                    <div class="fact-number">3.3M+</div>
+                    <div class="fact-label">Square Kilometers</div>
+                </div>
+                <div class="fact-box">
+                    <div class="fact-number">World's</div>
+                    <div class="fact-label">Largest Democracy</div>
+                </div>
+                <div class="fact-box">
+                    <div class="fact-number">5000+</div>
+                    <div class="fact-label">Years of Civilization</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p><span class="footer-text">Jai Hind</span> - Long Live India</p>
+        <p>Celebrating the spirit, culture, and soul of our great nation</p>
+    </footer>
+
+    <script>
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const sections = document.querySelectorAll('.section');
+
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const sectionId = button.getAttribute('data-section');
+                
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                sections.forEach(section => section.classList.remove('active'));
+                document.getElementById(sectionId).classList.add('active');
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        const landmarkCards = document.querySelectorAll('.landmark-card');
+        landmarkCards.forEach((card, index) => {
+            card.addEventListener('mouseenter', () => {
+                card.style.borderLeftColor = '#138808';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.borderLeftColor = '#FF9933';
+            });
+        });
+
+        const culturalItems = document.querySelectorAll('.cultural-item');
+        culturalItems.forEach((item, index) => {
+            item.style.animation = `fadeIn 0.6s ease-in ${index * 0.1}s backwards`;
+        });
+    </script>
+</body>
+</html>
